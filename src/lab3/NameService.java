@@ -1,5 +1,5 @@
-package lab3;
 
+package lab3;
 /**
  * This class provides various services relating to name manipulation.
  * No output should be performed here.
@@ -18,14 +18,17 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the last name
      */
-    public String extractLastName(String fullName) throws IllegalArgumentException {
+    public String extractLastName(String fullName) throws IllegalArgumentException {  //throws clause helps make methods self documentation
         if (fullName == null || fullName.isEmpty()){
-            throw new IllegalArgumentException();}
+            throw new IllegalArgumentException("Sorry, full name cannot be null or empty");
+        }
         String[] nameParts = fullName.split(" ");
-        try {
-        return nameParts[LAST_NAME_IDX];
-        } catch (ArrayIndexOutOfBoundsException ae){
-            throw new IllegalArgumentException("Must provide both a first and last name");}
+        
+        if(nameParts.length > 2 || nameParts.length <2 ) {
+            throw new IllegalArgumentException("Sorry, first and last name only are required");
+        }
+        return nameParts[nameParts.length - 1];
+ 
     }
     /**
      * Finds and returns the first name from within a full name. Caution: 
