@@ -18,17 +18,15 @@ public class NameService {
      * @param fullName - a name containing a first name and a last name
      * @return the last name
      */
-    public String extractLastName(String fullName, int[] array) {
-        try {
-        int length = fullName.length();
-        int value = array [2];
-        } catch (NullPointerException npe){
-            throw new IllegalArgumentException("Must provide a full name", npe);
-        } catch (ArrayIndexOutOfBoundsException ae){
-            throw new IllegalArgumentException("Must provide a valid array", ae);
+    public String extractLastName(String fullName) {
+        if (fullName == null || fullName.isEmpty()){
+            throw new IllegalArgumentException("Sorry, full name cannot be null or empty");
         }
-        
         String[] nameParts = fullName.split(" ");
+        
+        if(nameParts.length > 2 || nameParts.length <2 ) {
+            throw new IllegalArgumentException("Sorry, first and last name only are required");
+        }
         return nameParts[nameParts.length - 1];
     }
     
